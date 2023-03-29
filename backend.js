@@ -1,10 +1,12 @@
-var mysql = require('mysql');
+const mysql = require('mysql');
+const prompt = require('prompt-sync')();
 
 // creates a connection to server using username and password
 var con = mysql.createConnection({
 				host: "localhost",
 				user: "root",
-				password: "password"
+				password: "A!!d4tU&sCq?",
+				database: "helloworld"
 });
 
 //con.connect(function(err) {
@@ -18,14 +20,17 @@ var con = mysql.createConnection({
 //				});
 //});
 
+// all of these are function calls
 con.connect(function(err) {
 				if (err) throw err;
-				console.log("connected!");
-});
+				var sql = prompt('what sql? ');
+				con.query(sql, function(err, result) {
+								if (err) throw err;
+								console.log("Result: " + result);
+				});
 
-con.end(function(err) {
-				if (err) throw err;
-				console.log("ending connection");
+				con.end(function(err) {
+								if (err) throw err;
+								console.log("ending connection");
+				});
 });
-
-console.log("hello world");
