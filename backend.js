@@ -23,10 +23,10 @@ var con = mysql.createConnection({
 // all of these are function calls
 con.connect(function(err) {
 				if (err) throw err;
-				var sql = prompt('what sql? ');
-				con.query(sql, function(err, result) {
+				var sql = prompt("what sql");
+				con.query(sql, function(err, result, fields) {
 								if (err) throw err;
-								console.log("Result: " + result);
+								console.log(result);
 				});
 
 				con.end(function(err) {
